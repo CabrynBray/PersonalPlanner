@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\DevOps_Team4GroupProject\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj": {}
+    "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\DevOps_Team4GroupProject\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj": {
+    "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\DevOps_Team4GroupProject\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj",
+        "projectUniqueName": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj",
         "projectName": "PersonalPlanner",
-        "projectPath": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\DevOps_Team4GroupProject\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj",
-        "packagesPath": "C:\\Users\\cabry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\DevOps_Team4GroupProject\\Team4GroupProject\\PersonalPlanner\\obj\\",
+        "projectPath": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj",
+        "packagesPath": "C:\\Users\\Jared\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\cabry\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Jared\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -42,6 +43,28 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "DotNetEnv": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Cookies": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Components.Authorization": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.25.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -61,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

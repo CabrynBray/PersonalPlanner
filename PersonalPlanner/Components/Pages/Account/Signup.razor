@@ -1,0 +1,73 @@
+@page "/signup"
+
+@using PersonalPlanner.Data
+@using PersonalPlanner.Models.ViewModels
+@using PersonalPlanner.Models
+@using MongoDB.Driver
+@inject MongoDBContext dbContext
+@inject NavigationManager navigationManager
+
+<div class="row">
+    <div class="col-lg-4 offset-lg-4 pt-4 pb-4 border">
+        <EditForm Model="@Model" OnValidSubmit="Register" FormName="SignupForm">
+            <DataAnnotationsValidator />
+            <div class="mb-3 text-center d-flex-column">
+                <img src="/images/avatar.png" style="max-height:5rem" />
+                <h3>SIGN UP</h3>
+            </div>
+            <div class="mb-3">
+                <label>User Name</label>
+                <InputText @bind-Value="Model.Username" class="form-control" placeholder="Username" />
+                <ValidationMessage For="() => Model.Username" />
+            </div>
+            <div class="mb-3">
+                <label>Password</label>
+                <InputText @bind-Value="Model.Password" class="form-control" type="password" placeholder="Password" />
+                <ValidationMessage For="() => Model.Password" />
+            </div>
+            <div class="mb-3 text-center">
+                <span class="text-danger">@errorMessage</span>
+            </div>
+            <div class="mb-3 d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    public RegisterViewModel Model { get; set; } = new();
+
+    private string? errorMessage;
+
+    private async Task Register()
+    {
+        var userCollection = dbContext.Users;
+
+        var existingUser = await userCollection.Find(u => u.user_name == Model.Username).FirstOrDefaultAsync();
+        if (existingUser != null)
+        {
+            errorMessage = "Username already exists.";
+            return;
+        }
+
+        var newUser = new User
+            {
+                user_name = Model.Username,
+                password = HashPassword(Model.Password),
+                role = "User" // Default role
+            };
+
+        await userCollection.InsertOneAsync(newUser);
+
+        // Redirect to login page or home page after successful registration
+        navigationManager.NavigateTo("/login");
+    }
+
+    private string HashPassword(string password)
+    {
+        return BCrypt.Net.BCrypt.HashPassword(password);
+    }
+
+}
