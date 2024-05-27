@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj": {}
+    "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj": {
+    "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj",
+        "projectUniqueName": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj",
         "projectName": "PersonalPlanner",
-        "projectPath": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj",
-        "packagesPath": "C:\\Users\\Jared\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\obj\\",
+        "projectPath": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj",
+        "packagesPath": "C:\\Users\\cabry\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jared\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\cabry\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -84,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
