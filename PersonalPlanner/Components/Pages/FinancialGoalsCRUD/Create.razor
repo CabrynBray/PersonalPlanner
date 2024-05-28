@@ -1,0 +1,70 @@
+@page "/Goals/create"
+@inject PersonalPlanner.Data.MongoDBContext DB
+@using MongoDB.Driver.Linq
+@using PersonalPlanner
+@inject NavigationManager NavigationManager
+
+@using MongoDB.Driver
+@using PersonalPlanner.Data
+@inject MongoDBContext dbContext
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h4>Goal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Goal" OnValidSubmit="AddGoal" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <InputText id="title" @bind-Value="Goal.Title" class="form-control" />
+                <ValidationMessage For="() => Goal.Title" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="GoalDate" class="form-label">GoalDate:</label>
+                <InputDate id="GoalDate" @bind-Value="Goal.GoalDate" class="form-control" />
+                <ValidationMessage For="() => Goal.GoalDate" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="Description" class="form-label">Description:</label>
+                <InputText id="Description" @bind-Value="Goal.Description" class="form-control" />
+                <ValidationMessage For="() => Goal.Description" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="Amount" class="form-label">Amount:</label>
+                <InputNumber id="Amount" @bind-Value="Goal.Amount" class="form-control" />
+                <ValidationMessage For="() => Goal.Amount" class="text-danger" />
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/Goals">Back to List</a>
+</div>
+
+@code {
+
+    [SupplyParameterFromForm]
+    public Goal Goal { get; set; } = new();
+
+
+    public async Task AddGoal()
+    {
+        var goalCollection = dbContext.Goal;
+
+        // Get the maximum existing ID
+        int maxId = await goalCollection.AsQueryable().MaxAsync(g => (int?)g.Id) ?? 0;
+
+        // Increment the ID to get the next available number
+        Goal.Id = maxId + 1;
+
+        await goalCollection.InsertOneAsync(Goal);
+        NavigationManager.NavigateTo("/Goals");
+    }
+}

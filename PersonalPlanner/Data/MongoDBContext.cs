@@ -14,5 +14,9 @@ namespace PersonalPlanner.Data
         }
 
         public IMongoCollection<User> Users => _database.GetCollection<User>("Users");
+
+        public IMongoCollection<Goal> Goal => _database.GetCollection<Goal>("Goals");
+
+
     }
 }

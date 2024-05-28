@@ -1,0 +1,98 @@
+﻿@page "/Goals"
+@using MongoDB.Driver
+@using MongoDB.Driver.Linq
+@using PersonalPlanner.Data
+@inject MongoDBContext dbContext
+@using PersonalPlanner
+@rendermode InteractiveServer
+
+<PageTitle>Goals</PageTitle>
+
+<h1>Goals</h1>
+
+<p>
+    <a href="Goals/create">Create New</a>
+</p>
+
+<input type="search" @bind="filter" @bind:event="oninput" placeholder="Search by title" autofocus />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Goal Date</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var goal in PagedGoals)
+        {
+            <tr>
+                <td>@goal.Title</td>
+                <td>@goal.GoalDate?.ToString("MM/dd/yyyy")</td>
+                <td>@goal.Description</td>
+                <td>@goal.Amount</td>
+                <td>
+                    <a href="@($"Goals/edit?id={goal.Id}")">Edit</a> |
+                    <a href="@($"Goals/details?id={goal.Id}")">Details</a> |
+                    <a href="@($"Goals/delete?id={goal.Id}")">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <button @onclick="PreviousPage" disabled="@IsFirstPage">Previous</button>
+    <span>Page @CurrentPage of @TotalPages</span>
+    <button @onclick="NextPage" disabled="@IsLastPage">Next</button>
+</div>
+
+@code {
+    private string filter = "";
+    private int currentPage = 1;
+    private const int itemsPerPage = 10;
+    private List<Goal> allGoals = new List<Goal>();
+    private List<Goal> PagedGoals => GetPagedGoals();
+
+    protected override async Task OnInitializedAsync()
+    {
+        allGoals = await dbContext.Goal.Find(_ => true).ToListAsync();
+        StateHasChanged();
+    }
+
+    private List<Goal> GetPagedGoals()
+    {
+        var filteredGoals = string.IsNullOrEmpty(filter)
+        ? allGoals
+        : allGoals.Where(g => g.Title.Contains(filter, StringComparison.OrdinalIgnoreCase)).ToList();
+
+        TotalPages = (int)Math.Ceiling((double)filteredGoals.Count / itemsPerPage);
+        return filteredGoals.Skip((currentPage - 1) * itemsPerPage).Take(itemsPerPage).ToList();
+    }
+
+    private int TotalPages { get; set; }
+    private int CurrentPage => currentPage;
+    private bool IsFirstPage => currentPage == 1;
+    private bool IsLastPage => currentPage >= TotalPages;
+
+    private void NextPage()
+    {
+        if (currentPage < TotalPages)
+        {
+            currentPage++;
+            StateHasChanged();
+        }
+    }
+
+    private void PreviousPage()
+    {
+        if (currentPage > 1)
+        {
+            currentPage--;
+            StateHasChanged();
+        }
+    }
+}

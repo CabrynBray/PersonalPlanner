@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "C45b5TcYQj63HWZkpzrYF5bKSiOQ3CtV6c8jU8dKjaM=",
+  "Hash": "mgLz2+aTwGvJiT7IuDBXzURMAe6SIjfxfAxsRsRoQSc=",
   "Source": "PersonalPlanner",
   "BasePath": "_content/PersonalPlanner",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "PersonalPlanner\\wwwroot",
       "Source": "PersonalPlanner",
-      "ContentRoot": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
       "BasePath": "_content/PersonalPlanner",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\bundle\\PersonalPlanner.styles.css",
+      "Identity": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\bundle\\PersonalPlanner.styles.css",
       "SourceId": "PersonalPlanner",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "PersonalPlanner.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\bundle\\PersonalPlanner.styles.css"
+      "OriginalItemSpec": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\bundle\\PersonalPlanner.styles.css"
     },
     {
-      "Identity": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PersonalPlanner.bundle.scp.css",
+      "Identity": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PersonalPlanner.bundle.scp.css",
       "SourceId": "PersonalPlanner",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "PersonalPlanner.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PersonalPlanner.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PersonalPlanner.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\app.css",
+      "Identity": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\app.css",
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "app.css",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\favicon.png",
+      "Identity": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\favicon.png",
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "favicon.png",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.png"
     },
     {
-      "Identity": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\access-denied.png",
+      "Identity": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\access-denied.png",
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "images/access-denied.png",
       "AssetKind": "All",
@@ -150,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\images\\access-denied.png"
     },
     {
-      "Identity": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\avatar.png",
+      "Identity": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\avatar.png",
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "images/avatar.png",
       "AssetKind": "All",
@@ -169,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\images\\avatar.png"
     },
     {
-      "Identity": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\logout.png",
+      "Identity": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\logout.png",
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "images/logout.png",
       "AssetKind": "All",

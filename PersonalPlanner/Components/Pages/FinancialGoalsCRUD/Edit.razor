@@ -1,0 +1,93 @@
+@page "/Goals/edit"
+@using MongoDB.Driver
+@inject PersonalPlanner.Data.MongoDBContext DB
+@inject NavigationManager NavigationManager
+
+<PageTitle>Edit</PageTitle>
+
+<h1>Edit</h1>
+
+<h4>Goal</h4>
+<hr />
+@if (Goal is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm Model="Goal" OnValidSubmit="UpdateGoal">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <input type="hidden" name="Goal.Id" value="@Goal.Id" />
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label>
+                    <InputText id="title" @bind-Value="Goal.Title" class="form-control" />
+                    <ValidationMessage For="() => Goal.Title" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="GoalDate" class="form-label">GoalDate:</label>
+                    <InputDate id="GoalDate" @bind-Value="Goal.GoalDate" class="form-control" />
+                    <ValidationMessage For="() => Goal.GoalDate" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="Description" class="form-label">Description:</label>
+                    <InputText id="Description" @bind-Value="Goal.Description" class="form-control" />
+                    <ValidationMessage For="() => Goal.Description" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="Amount" class="form-label">Amount:</label>
+                    <InputNumber id="Amount" @bind-Value="Goal.Amount" class="form-control" />
+                    <ValidationMessage For="() => Goal.Amount" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </EditForm>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="/Goals">Back to List</a>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    public Goal? Goal { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id == 0)
+        {
+            NavigationManager.NavigateTo("/Goals");
+            return;
+        }
+
+        var filter = Builders<Goal>.Filter.Eq(g => g.Id, Goal?.Id);
+        Goal = await DB.Goal.Find(filter).FirstOrDefaultAsync();
+
+        if (Goal == null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    public async Task UpdateGoal()
+    {
+        if (Goal == null) return;
+
+        var filter = Builders<Goal>.Filter.Eq(g => g.Id, Goal.Id);
+        var updateResult = await DB.Goal.ReplaceOneAsync(filter, Goal);
+
+        if (updateResult.MatchedCount == 0)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/Goals");
+        }
+    }
+}

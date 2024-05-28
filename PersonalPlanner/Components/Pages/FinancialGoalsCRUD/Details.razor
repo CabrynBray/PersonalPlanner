@@ -1,0 +1,59 @@
+﻿@page "/Goals/details"
+@inject PersonalPlanner.Data.MongoDBContext DB
+@using PersonalPlanner
+@inject NavigationManager NavigationManager
+@using MongoDB.Driver
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h4>Goal</h4>
+    <hr />
+    @if (Goal is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <dl class="row">
+            <dt class="col-sm-2">Title</dt>
+            <dd class="col-sm-10">@Goal.Title</dd>
+            <dt class="col-sm-2">GoalDate</dt>
+            <dd class="col-sm-10">@Goal.GoalDate</dd>
+            <dt class="col-sm-2">Description</dt>
+            <dd class="col-sm-10">@Goal.Description</dd>
+            <dt class="col-sm-2">Amount</dt>
+            <dd class="col-sm-10">@Goal.Amount</dd>
+        </dl>
+        <div>
+            <a href="@($"/Goals/edit?id={Goal.Id}")">Edit</a> |
+            <a href="@($"/Goals")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    Goal? Goal;
+
+    [SupplyParameterFromQuery]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id == 0)
+        {
+            NavigationManager.NavigateTo("/Goals");
+            return;
+        }
+
+        var filter = Builders<Goal>.Filter.Eq(g => g.Id, Goal?.Id);
+        Goal = await DB.Goal.Find(filter).FirstOrDefaultAsync();
+
+        if (Goal == null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

@@ -46,6 +46,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/cabry/OneDrive - BYU-Idaho/cse325/GroupProject-Team4/Team4GroupProject/PersonalPlanner/Components/Pages/FinancialGoalsCRUD/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xGaW5hbmNpYWxHb2Fsc0NSVURcQ3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/cabry/OneDrive - BYU-Idaho/cse325/GroupProject-Team4/Team4GroupProject/PersonalPlanner/Components/Pages/FinancialGoalsCRUD/Delete.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xGaW5hbmNpYWxHb2Fsc0NSVURcRGVsZXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/cabry/OneDrive - BYU-Idaho/cse325/GroupProject-Team4/Team4GroupProject/PersonalPlanner/Components/Pages/FinancialGoalsCRUD/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xGaW5hbmNpYWxHb2Fsc0NSVURcRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/cabry/OneDrive - BYU-Idaho/cse325/GroupProject-Team4/Team4GroupProject/PersonalPlanner/Components/Pages/FinancialGoalsCRUD/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xGaW5hbmNpYWxHb2Fsc0NSVURcRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/cabry/OneDrive - BYU-Idaho/cse325/GroupProject-Team4/Team4GroupProject/PersonalPlanner/Components/Pages/FinancialGoalsCRUD/FinancialGoals.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xGaW5hbmNpYWxHb2Fsc0NSVURcRmluYW5jaWFsR29hbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/cabry/OneDrive - BYU-Idaho/cse325/GroupProject-Team4/Team4GroupProject/PersonalPlanner/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
