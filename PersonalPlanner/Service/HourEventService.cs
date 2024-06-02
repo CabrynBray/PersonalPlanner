@@ -4,6 +4,8 @@ using System.Data.SqlClient;
 using System.Data;
 using Dapper;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using PersonalPlanner.Data;
+using MongoDB.Driver;
 
 namespace Calendar.Service
 {
@@ -20,171 +22,37 @@ namespace Calendar.Service
 			Configuration = configuration;
 		}
 
-		public string Delete(int id)
+		MongoDBContext db = new MongoDBContext(new MongoDBSettings() {
+			ConnectionString = "mongodb+srv://team04:X0QZDHtKPev5cv1B@team4cluster.hfsodnz.mongodb.net/",
+			DatabaseName = "PersonalPlanner"
+		});
+
+		public async Task DeleteHourEvent(HourEvent hourEvent)
 		{
-			string message = "";
-			try
-			{
-				_oHourEvent = new HourEvent()
-				{
-					HourEventId = id
-				};
+			if (hourEvent == null) return;
 
-				IDbConnection con = new SqlConnection(Configuration.GetConnectionString("MyCalendar"));
-
-				if (con.State == ConnectionState.Closed) con.Open();
-
-				var oHourEvents = con.Query<HourEvent>("SP_HourEvent", this.SetParameters(_oHourEvent, (int)OperationType.Delete), commandType: CommandType.StoredProcedure);
-
-				message = "Deleted";
-
-				con.Close();
-			}
-			catch (Exception ex)
-			{
-				message = ex.Message;
-			}
-
-			return message;
+			var filter = Builders<HourEvent>.Filter.Eq(g => g.HourEventId, hourEvent.HourEventId);
+			var deleteResult = await db.HourEvent.DeleteOneAsync(filter);
 		}
 
-		public HourEvent GetEvent(DateTime eventDate, string hour)
-		{
-			_oHourEvent = new HourEvent();
-			IDbConnection con = new SqlConnection(Configuration.GetConnectionString("MyCalendar"));
-			if (con.State == ConnectionState.Closed) con.Open();
+		public async Task<HourEvent?> GetAsync(DateTime eventDate) =>
+        	await db.HourEvent.Find(x => x.HourEventDay == eventDate).FirstOrDefaultAsync();
 
-			string sql = string.Format(@"SELECT * FROM HourEvent WHERE HourEventDay = '{0}'", eventDate.ToString("dd-MMM-yyyy"));
-
-			var oHourEvents = con.Query<HourEvent>(sql).ToList();
-
-			if (oHourEvents != null && oHourEvents.Count() > 0)
-			{
-				_oHourEvent = oHourEvents.SingleOrDefault();
-			}
-			else
-			{
-				_oHourEvent.HourEventDay = eventDate;
-
-			}
-
-			con.Close();
-			return _oHourEvent;
+		public async Task<List<HourEvent>> GetEvents(DateTime fromDate, DateTime toDate){
+			var filterFrom = Builders<HourEvent>.Filter.Gte(g => g.HourEventDay, fromDate);
+			var filterTo = Builders<HourEvent>.Filter.Lte(g => g.HourEventDay, toDate);
+			return await db.HourEvent.Find(filterFrom&filterTo).ToListAsync();
 		}
 
-		public List<HourEvent> GetEvents(DateTime fromDate, DateTime toDate)
-		{
-			_oHourEvents = new List<HourEvent>();
-
-			try
-			{
-				
-
-				IDbConnection con = new SqlConnection(Configuration.GetConnectionString("MyCalendar"));
-				if (con.State == ConnectionState.Closed) con.Open();
-
-				string sql = string.Format(@"SELECT * FROM HourEvent WHERE HourEventDay BETWEEN '{0}' AND '{1}'", fromDate.ToString("dd-MMM-yyyy"), toDate.ToString("dd-MMM-yyyy"));
-
-				var oHourEvents = con.Query<HourEvent>(sql).ToList();
-
-				if (oHourEvents != null && oHourEvents.Count() > 0)
-				{
-					_oHourEvents = oHourEvents;
-				}
-
-				con.Close();
-
-				
-
-			} catch (Exception ex)
-			{
-
+		public async Task<HourEvent> CreateAsync(HourEvent hourEvent) {
+			if (hourEvent.HourEventId == 0) {
+				var insert = db.HourEvent.InsertOneAsync(hourEvent);
+			} else {
+				var update = db.HourEvent.ReplaceOneAsync(x => x.HourEventId == hourEvent.HourEventId, hourEvent);
 			}
 
-			return _oHourEvents;
-
-		}
-
-		public HourEvent SaveOrUpdate(HourEvent oHourEvent)
-		{
-			_oHourEvent = new HourEvent();
-			try
-			{
-				int operationType = Convert.ToInt32(oHourEvent.HourEventId == 0 ? OperationType.Insert : OperationType.Update);
-
-				IDbConnection con = new SqlConnection(Configuration.GetConnectionString("MyCalendar"));
-				if (con.State == ConnectionState.Closed) con.Open();
-
-				var oHourEvents = con.Query<HourEvent>("SP_HourEvent", this.SetParameters(oHourEvent, operationType), commandType: CommandType.StoredProcedure);
-
-				if (oHourEvents != null && oHourEvents.Count() > 0)
-				{
-					_oHourEvent = oHourEvents.FirstOrDefault();
-				}
-
-				con.Close();
-			}
-			catch (Exception ex)
-			{
-				_oHourEvent.Message = ex.Message;
-			}
-			return _oHourEvent;
-		}
-
-	//	@Note varchar(MAX)
-
-	//,@HourEventId int
-
-	//,@HourEventHour varchar(10)
-
-	//,@HourEventDay datetime
-
-	//, @OperationType int
-
-		private DynamicParameters SetParameters(HourEvent oHourEvent, int operationType)
-		{
-			DynamicParameters parameters = new DynamicParameters();
-
-			parameters.Add("@Note", oHourEvent.Note);
-			parameters.Add("@HourEventId", oHourEvent.HourEventId);
-			parameters.Add("@HourEventHour", oHourEvent.HourEventHour);
-			parameters.Add("@HourEventDay", oHourEvent.HourEventDay);
-			parameters.Add("@OperationType", operationType);
-
-			return parameters;
-		}
-
-		public List<HourEvent> GetEvents(DateTime eventDate)
-		{
-			_oHourEvents = new List<HourEvent>();
-
-			try
-			{
-
-
-				IDbConnection con = new SqlConnection(Configuration.GetConnectionString("MyCalendar"));
-				if (con.State == ConnectionState.Closed) con.Open();
-
-				string sql = string.Format(@"SELECT * FROM HourEvent WHERE HourEventDay = '{0}'", eventDate.ToString("dd-MMM-yyyy"));
-
-				var oHourEvents = con.Query<HourEvent>(sql).ToList();
-
-				if (oHourEvents != null && oHourEvents.Count() > 0)
-				{
-					_oHourEvents = oHourEvents;
-				}
-
-				con.Close();
-
-
-
-			}
-			catch (Exception ex)
-			{
-
-			}
-
-			return _oHourEvents;
+			return await db.HourEvent.Find(x => x.HourEventId == hourEvent.HourEventId).FirstOrDefaultAsync();
+			
 		}
 	}
 }

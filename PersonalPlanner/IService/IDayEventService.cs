@@ -4,11 +4,12 @@ namespace Calendar.IService
 {
 	public interface IDayEventService
 	{
-		DayEvent SaveOrUpdate(DayEvent oDayEvent);
-		DayEvent GetEvent(DateTime eventDate);
+		public Task DeleteDayEvent(DayEvent dayEvent);
 
-		List<DayEvent> GetEvents(DateTime fromDate, DateTime toDate);
+		public Task<DayEvent?> GetAsync(DateTime eventDate);
 
-		string Delete(int id);
+		public Task<List<DayEvent>> GetEvents(DateTime fromDate, DateTime toDate);
+			
+		public Task<DayEvent> CreateAsync(DayEvent dayEvent);
 	}
 }

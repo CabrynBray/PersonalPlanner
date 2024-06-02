@@ -1,4 +1,7 @@
-﻿namespace Calendar.Data
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace Calendar.Data
 {
 	public class HourEvent
 	{
@@ -17,6 +20,8 @@
 		
 		 */
 
+		[BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
 		public int HourEventId { get; set; }
 
 		public DateTime HourEventDay { get; set; }
@@ -25,6 +30,7 @@
 
 		public string Note { get; set; }
 
+		[BsonIgnore]
 		public string Message { get; set; }
 	}
 }

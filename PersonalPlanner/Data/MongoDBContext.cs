@@ -1,5 +1,6 @@
 using MongoDB.Driver;
 using PersonalPlanner.Models;
+using Calendar.Data;
 
 namespace PersonalPlanner.Data
 {
@@ -16,6 +17,10 @@ namespace PersonalPlanner.Data
         public IMongoCollection<User> Users => _database.GetCollection<User>("Users");
 
         public IMongoCollection<Goal> Goal => _database.GetCollection<Goal>("Goals");
+
+        public IMongoCollection<DayEvent> DayEvent => _database.GetCollection<DayEvent>("DayEvent");
+
+        public IMongoCollection<HourEvent> HourEvent => _database.GetCollection<HourEvent>("HourEvent");
 
 
     }

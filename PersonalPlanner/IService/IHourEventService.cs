@@ -4,13 +4,12 @@ namespace Calendar.IService
 {
 	public interface IHourEventService
 	{
-		HourEvent SaveOrUpdate(HourEvent oHourEvent);
-		HourEvent GetEvent(DateTime eventDate, string hour);
+		public Task DeleteHourEvent(HourEvent hourEvent);
 
-		List<HourEvent> GetEvents(DateTime eventDate);
+		public Task<HourEvent?> GetAsync(DateTime eventDate);
 
-		List<HourEvent> GetEvents(DateTime fromDate, DateTime toDate);
+		public Task<List<HourEvent>> GetEvents(DateTime fromDate, DateTime toDate);
 
-		string Delete(int id);
+		public Task<HourEvent> CreateAsync(HourEvent hourEvent);
 	}
 }
