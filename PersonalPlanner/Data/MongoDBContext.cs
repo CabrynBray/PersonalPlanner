@@ -22,6 +22,8 @@ namespace PersonalPlanner.Data
 
         public IMongoCollection<HourEvent> HourEvent => _database.GetCollection<HourEvent>("HourEvent");
 
+        public IMongoCollection<TodoTask> Todo => _database.GetCollection<TodoTask>("Todos");
+
 
     }
 }

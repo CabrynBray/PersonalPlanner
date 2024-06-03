@@ -1,0 +1,65 @@
+@page "/Todos/CreateTodo"
+@inject PersonalPlanner.Data.MongoDBContext DB
+@using MongoDB.Driver.Linq
+@using PersonalPlanner
+@inject NavigationManager NavigationManager
+
+@using MongoDB.Driver
+@using PersonalPlanner.Data
+@inject MongoDBContext dbContext
+
+<PageTitle>Create Task</PageTitle>
+
+<h1>Create New Task</h1>
+
+<h4>Task</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Todo" OnValidSubmit="AddTodo" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
+            <div class="mb-3">
+                <label for="title" class="form-label">To-do Task:</label>
+                <InputText id="title" @bind-Value="Todo.Todo" class="form-control" />
+                <ValidationMessage For="() => Todo.Todo" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="DueDate" class="form-label">Due Date:</label>
+                <InputDate id="DueDate" @bind-Value="Todo.DueDate" class="form-control" />
+                <ValidationMessage For="() => Todo.DueDate" class="text-danger" />
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/Todos">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    public TodoTask Todo { get; set; } = new();
+
+    public async Task AddTodo()
+    {
+        var todoCollection = dbContext.Todo;
+
+        // Get the maximum existing ID
+        var maxId = await todoCollection.AsQueryable()
+                                        .Select(g => (int?)g.Id)
+                                        .ToListAsync();
+
+        int newId = maxId.Any() ? maxId.Max().GetValueOrDefault() + 1 : 1;
+
+        // Assign the new ID
+        Todo.Id = newId;
+
+        // Insert the new todo item
+        await todoCollection.InsertOneAsync(Todo);
+
+        // Navigate back to the list of todos
+        NavigationManager.NavigateTo("/Todos");
+    }
+}

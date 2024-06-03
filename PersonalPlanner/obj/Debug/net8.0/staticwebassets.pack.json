@@ -1,6 +1,7 @@
 {
   "Files": [
     {
+<<<<<<< HEAD
       "Id": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PersonalPlanner.bundle.scp.css",
       "PackagePath": "staticwebassets\\PersonalPlanner.bundle.scp.css"
     },
@@ -30,6 +31,37 @@
     },
     {
       "Id": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\logout.png",
+=======
+      "Id": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PersonalPlanner.bundle.scp.css",
+      "PackagePath": "staticwebassets\\PersonalPlanner.bundle.scp.css"
+    },
+    {
+      "Id": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\access-denied.png",
+      "PackagePath": "staticwebassets\\images\\access-denied.png"
+    },
+    {
+      "Id": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\avatar.png",
+      "PackagePath": "staticwebassets\\images\\avatar.png"
+    },
+    {
+      "Id": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\logout.png",
+>>>>>>> 03aa17a50bdef3f87f3354d5d255af5358da7bc4
       "PackagePath": "staticwebassets\\images\\logout.png"
     },
     {

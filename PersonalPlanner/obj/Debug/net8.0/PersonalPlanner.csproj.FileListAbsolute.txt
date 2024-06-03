@@ -110,6 +110,7 @@ C:\Users\cabry\OneDrive - BYU-Idaho\cse325\GroupProject-Team4\Team4GroupProject\
 C:\Users\cabry\OneDrive - BYU-Idaho\cse325\GroupProject-Team4\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.pdb
 C:\Users\cabry\OneDrive - BYU-Idaho\cse325\GroupProject-Team4\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.genruntimeconfig.cache
 C:\Users\cabry\OneDrive - BYU-Idaho\cse325\GroupProject-Team4\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\ref\PersonalPlanner.dll
+<<<<<<< HEAD
 C:\Users\vicky\Documents\BYU\ProyectoTeam4\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\vicky\Documents\BYU\ProyectoTeam4\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\appsettings.json
 C:\Users\vicky\Documents\BYU\ProyectoTeam4\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\PersonalPlanner.staticwebassets.runtime.json
@@ -173,3 +174,68 @@ C:\Users\vicky\Documents\BYU\ProyectoTeam4\Team4GroupProject\PersonalPlanner\obj
 C:\Users\vicky\Documents\BYU\ProyectoTeam4\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.pdb
 C:\Users\vicky\Documents\BYU\ProyectoTeam4\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.genruntimeconfig.cache
 C:\Users\vicky\Documents\BYU\ProyectoTeam4\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\ref\PersonalPlanner.dll
+=======
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\appsettings.Development.json
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\appsettings.json
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\PersonalPlanner.staticwebassets.runtime.json
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\PersonalPlanner.exe
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\PersonalPlanner.deps.json
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\PersonalPlanner.runtimeconfig.json
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\PersonalPlanner.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\PersonalPlanner.pdb
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\AWSSDK.Core.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\AWSSDK.SecurityToken.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\BCrypt.Net-Next.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\Dapper.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\DnsClient.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\DotNetEnv.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\Microsoft.AspNetCore.Components.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Authorization.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\MongoDB.Bson.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\MongoDB.Driver.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\MongoDB.Driver.Core.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\MongoDB.Libmongocrypt.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\SharpCompress.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\Snappier.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\Sprache.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\System.Data.SqlClient.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\System.Security.Permissions.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\ZstdSharp.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\runtimes\linux\native\libmongocrypt.so
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\runtimes\osx\native\libmongocrypt.dylib
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\runtimes\win\native\mongocrypt.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\runtimes\win-arm64\native\sni.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\runtimes\win-x64\native\sni.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.csproj.AssemblyReference.cache
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.AssemblyInfoInputs.cache
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.AssemblyInfo.cs
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.csproj.CoreCompileInputs.cache
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.MvcApplicationPartsAssemblyInfo.cache
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.sourcelink.json
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\staticwebassets.build.json
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\staticwebassets.development.json
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\staticwebassets\msbuild.PersonalPlanner.Microsoft.AspNetCore.StaticWebAssets.props
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\staticwebassets\msbuild.build.PersonalPlanner.props
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.PersonalPlanner.props
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.PersonalPlanner.props
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\staticwebassets.pack.json
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\scopedcss\bundle\PersonalPlanner.styles.css
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\scopedcss\projectbundle\PersonalPlanner.bundle.scp.css
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\Personal.30512B04.Up2Date
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\refint\PersonalPlanner.dll
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.pdb
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\PersonalPlanner.genruntimeconfig.cache
+c:\Users\pumeh\Desktop\.NET2024\ToDoFINAL\Team4GroupProject\PersonalPlanner\obj\Debug\net8.0\ref\PersonalPlanner.dll
+>>>>>>> 03aa17a50bdef3f87f3354d5d255af5358da7bc4

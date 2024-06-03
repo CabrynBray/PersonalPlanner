@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "Hash": "0x5OqMKebaVz2qVK3gxIZa23TReuRWaSc2fHKDOI4SE=",
+=======
+  "Hash": "nm4cMQM7Uhocqh8yQQlfF4WikDy2+KLGpG5QE056W7s=",
+>>>>>>> 03aa17a50bdef3f87f3354d5d255af5358da7bc4
   "Source": "PersonalPlanner",
   "BasePath": "_content/PersonalPlanner",
   "Mode": "Default",
@@ -10,17 +14,28 @@
     {
       "Name": "PersonalPlanner\\wwwroot",
       "Source": "PersonalPlanner",
+<<<<<<< HEAD
       "ContentRoot": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+=======
+      "ContentRoot": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+>>>>>>> 03aa17a50bdef3f87f3354d5d255af5358da7bc4
       "BasePath": "_content/PersonalPlanner",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\bundle\\PersonalPlanner.styles.css",
       "SourceId": "PersonalPlanner",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+=======
+      "Identity": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\bundle\\PersonalPlanner.styles.css",
+      "SourceId": "PersonalPlanner",
+      "SourceType": "Computed",
+      "ContentRoot": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+>>>>>>> 03aa17a50bdef3f87f3354d5d255af5358da7bc4
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "PersonalPlanner.styles.css",
       "AssetKind": "All",
@@ -33,6 +48,7 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
+<<<<<<< HEAD
       "OriginalItemSpec": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\bundle\\PersonalPlanner.styles.css"
     },
     {
@@ -40,6 +56,15 @@
       "SourceId": "PersonalPlanner",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+=======
+      "OriginalItemSpec": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\bundle\\PersonalPlanner.styles.css"
+    },
+    {
+      "Identity": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PersonalPlanner.bundle.scp.css",
+      "SourceId": "PersonalPlanner",
+      "SourceType": "Computed",
+      "ContentRoot": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+>>>>>>> 03aa17a50bdef3f87f3354d5d255af5358da7bc4
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "PersonalPlanner.bundle.scp.css",
       "AssetKind": "All",
@@ -52,6 +77,7 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
+<<<<<<< HEAD
       "OriginalItemSpec": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PersonalPlanner.bundle.scp.css"
     },
     {
@@ -59,6 +85,15 @@
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+=======
+      "OriginalItemSpec": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PersonalPlanner.bundle.scp.css"
+    },
+    {
+      "Identity": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\app.css",
+      "SourceId": "PersonalPlanner",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+>>>>>>> 03aa17a50bdef3f87f3354d5d255af5358da7bc4
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "app.css",
       "AssetKind": "All",
@@ -74,10 +109,17 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+=======
+      "Identity": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "SourceId": "PersonalPlanner",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+>>>>>>> 03aa17a50bdef3f87f3354d5d255af5358da7bc4
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -93,10 +135,17 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+=======
+      "Identity": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "SourceId": "PersonalPlanner",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+>>>>>>> 03aa17a50bdef3f87f3354d5d255af5358da7bc4
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -112,10 +161,17 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\favicon.png",
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+=======
+      "Identity": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\favicon.png",
+      "SourceId": "PersonalPlanner",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+>>>>>>> 03aa17a50bdef3f87f3354d5d255af5358da7bc4
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "favicon.png",
       "AssetKind": "All",
@@ -131,10 +187,17 @@
       "OriginalItemSpec": "wwwroot\\favicon.png"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\access-denied.png",
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+=======
+      "Identity": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\access-denied.png",
+      "SourceId": "PersonalPlanner",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+>>>>>>> 03aa17a50bdef3f87f3354d5d255af5358da7bc4
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "images/access-denied.png",
       "AssetKind": "All",
@@ -150,10 +213,17 @@
       "OriginalItemSpec": "wwwroot\\images\\access-denied.png"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\avatar.png",
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+=======
+      "Identity": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\avatar.png",
+      "SourceId": "PersonalPlanner",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+>>>>>>> 03aa17a50bdef3f87f3354d5d255af5358da7bc4
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "images/avatar.png",
       "AssetKind": "All",
@@ -169,10 +239,17 @@
       "OriginalItemSpec": "wwwroot\\images\\avatar.png"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\logout.png",
       "SourceId": "PersonalPlanner",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+=======
+      "Identity": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\logout.png",
+      "SourceId": "PersonalPlanner",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\pumeh\\Desktop\\.NET2024\\ToDoFINAL\\Team4GroupProject\\PersonalPlanner\\wwwroot\\",
+>>>>>>> 03aa17a50bdef3f87f3354d5d255af5358da7bc4
       "BasePath": "_content/PersonalPlanner",
       "RelativePath": "images/logout.png",
       "AssetKind": "All",

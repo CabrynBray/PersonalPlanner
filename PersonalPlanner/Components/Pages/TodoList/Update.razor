@@ -1,0 +1,87 @@
+@page "/Todos/Update"
+
+@using PersonalPlanner.Data
+@using PersonalPlanner.Models.ViewModels
+@using PersonalPlanner.Models
+@using MongoDB.Driver
+@inject MongoDBContext dbContext
+@inject NavigationManager navigationManager
+
+
+<PageTitle>Update</PageTitle>
+
+<h1>Update To-Do Task</h1>
+
+<h4>To-Do Task</h4>
+<hr />
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm Model="@Model" OnValidSubmit="UpdateTodo" FormName="updateForm">
+                <DataAnnotationsValidator />
+                <input type="hidden" name="Id" value="@Todo.Id" />
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">To-Do Task:</label>
+                    <InputText @bind-Value="Model.Task" class="form-control"placeholder="@Todo.Todo" />
+                    <ValidationMessage For="() => Model.Task" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="DueDate" class="form-label">Due Date:</label>
+                    <InputDate @bind-Value="Model.Date" class="form-control"/>
+                    <ValidationMessage For="() => Model.Date" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </EditForm>
+        </div>
+    </div>
+<div>
+    <a href="/Todos">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    public UpdateTodoModel Model { get; set; } = new();
+
+    public TodoTask? Todo { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var uri = navigationManager.ToAbsoluteUri(navigationManager.Uri);
+        var query = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query);
+        if (query.TryGetValue("id", out var idValue) && int.TryParse(idValue, out var id))
+        {
+            var filter = Builders<TodoTask>.Filter.Eq(t => t.Id, id);
+            Todo = await dbContext.Todo.Find(filter).FirstOrDefaultAsync();
+            if (Todo == null)
+            {
+                navigationManager.NavigateTo("notfound");
+            }
+        }
+        else
+        {
+            navigationManager.NavigateTo("/Todos");
+        }
+    }
+
+    public async Task UpdateTodo()
+    {
+            // Get the values from the form fields
+            var title = Model.Task;
+            var dueDate = Model.Date;
+
+            // Update the TodoTask object
+            Todo.Todo = title;
+            Todo.DueDate = dueDate;
+
+            // Update the TodoTask in the database
+            var filter = Builders<TodoTask>.Filter.Eq(t => t.Id, Todo.Id);
+            var update = Builders<TodoTask>.Update
+                .Set("Todo", title)
+                .Set("DueDate", dueDate);
+
+            await dbContext.Todo.UpdateOneAsync(filter, update).ConfigureAwait(false);
+
+            navigationManager.NavigateTo("/Todos", true);
+
+    }
+}
