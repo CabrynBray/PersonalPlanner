@@ -1,35 +1,35 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PersonalPlanner.bundle.scp.css",
+      "Id": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PersonalPlanner.bundle.scp.css",
       "PackagePath": "staticwebassets\\PersonalPlanner.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\app.css",
+      "Id": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
-      "Id": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\access-denied.png",
+      "Id": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\access-denied.png",
       "PackagePath": "staticwebassets\\images\\access-denied.png"
     },
     {
-      "Id": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\avatar.png",
+      "Id": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\avatar.png",
       "PackagePath": "staticwebassets\\images\\avatar.png"
     },
     {
-      "Id": "C:\\Users\\cabry\\OneDrive - BYU-Idaho\\cse325\\GroupProject-Team4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\logout.png",
+      "Id": "C:\\Users\\vicky\\Documents\\BYU\\ProyectoTeam4\\Team4GroupProject\\PersonalPlanner\\wwwroot\\images\\logout.png",
       "PackagePath": "staticwebassets\\images\\logout.png"
     },
     {
