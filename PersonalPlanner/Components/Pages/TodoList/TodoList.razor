@@ -1,0 +1,65 @@
+@page "/Todos"
+@using MongoDB.Driver
+@using MongoDB.Driver.Linq
+@using PersonalPlanner.Data
+@inject MongoDBContext dbContext
+@inject PersonalPlanner.Data.MongoDBContext DB
+@inject NavigationManager NavigationManager
+@using PersonalPlanner
+@rendermode InteractiveServer
+
+<PageTitle>To-Do List</PageTitle>
+
+<h1>To-Do List</h1>
+
+@* <input @bind="newTodoTask" />
+<button class="btn btn-primary" @onclick="AddTodoTask">Add Task</button> *@
+
+<p>
+    <a href="Todos/CreateTodo">Create New</a>
+</p>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Due Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var todo in todoTasks)
+        {
+           <tr>
+                <td>@todo.Todo</td>
+                <td>@todo.DueDate?.ToString("MM/dd/yyyy")</td> 
+                <td>
+                    <a href="@($"Todos/Update?id={todo.Id}")">Update</a> |
+                    <a href="@($"Todos/Delete?id={todo.Id}")">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code{
+    private string filter = "";
+    private List<TodoTask> todoTasks = new List<TodoTask>();
+    private List<TodoTask> TodoTasks => GetTasks();
+
+    protected override async Task OnInitializedAsync()
+    {
+        todoTasks = await dbContext.Todo.Find(_ => true).ToListAsync();
+        StateHasChanged();
+    }
+
+    private List<TodoTask> GetTasks()
+    {
+        var filteredTodoTasks = string.IsNullOrEmpty(filter)
+        ? todoTasks
+        : todoTasks.Where(todo => todo.Todo.Contains(filter, StringComparison.OrdinalIgnoreCase)).ToList();
+        return filteredTodoTasks.ToList();
+    }
+
+}
