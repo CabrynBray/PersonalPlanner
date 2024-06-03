@@ -1,7 +1,10 @@
 @page "/Goals/edit"
+@using PersonalPlanner.Data
+@using PersonalPlanner.Models.ViewModels
+@using PersonalPlanner.Models
 @using MongoDB.Driver
-@inject PersonalPlanner.Data.MongoDBContext DB
-@inject NavigationManager NavigationManager
+@inject MongoDBContext dbContext
+@inject NavigationManager navigationManager
 
 <PageTitle>Edit</PageTitle>
 
@@ -17,10 +20,10 @@ else
 {
     <div class="row">
         <div class="col-md-4">
-            <EditForm Model="Goal" OnValidSubmit="UpdateGoal">
+            <EditForm Model="Goal" OnValidSubmit="EditGoals" FormName="editForm">
                 <DataAnnotationsValidator />
                 <ValidationSummary />
-                <input type="hidden" name="Goal.Id" value="@Goal.Id" />
+                <input type="hidden" name="Id" value="@Goal.Id" />
                 <div class="mb-3">
                     <label for="title" class="form-label">Title:</label>
                     <InputText id="title" @bind-Value="Goal.Title" class="form-control" />
@@ -52,42 +55,45 @@ else
 </div>
 
 @code {
-    [Parameter]
-    public int Id { get; set; }
-
-    public Goal? Goal { get; set; }
+    public EditGoalsModels Model { get; set; } = new();
+    public Goal Goal { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
-        if (Id == 0)
+        var uri = navigationManager.ToAbsoluteUri(navigationManager.Uri);
+        var query = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query);
+        if (query.TryGetValue("id", out var idValue) && int.TryParse(idValue, out var id))
         {
-            NavigationManager.NavigateTo("/Goals");
-            return;
-        }
-
-        var filter = Builders<Goal>.Filter.Eq(g => g.Id, Goal?.Id);
-        Goal = await DB.Goal.Find(filter).FirstOrDefaultAsync();
-
-        if (Goal == null)
-        {
-            NavigationManager.NavigateTo("notfound");
-        }
-    }
-
-    public async Task UpdateGoal()
-    {
-        if (Goal == null) return;
-
-        var filter = Builders<Goal>.Filter.Eq(g => g.Id, Goal.Id);
-        var updateResult = await DB.Goal.ReplaceOneAsync(filter, Goal);
-
-        if (updateResult.MatchedCount == 0)
-        {
-            NavigationManager.NavigateTo("notfound");
+            var filter = Builders<Goal>.Filter.Eq(t => t.Id, id);
+            Goal = await dbContext.Goal.Find(filter).FirstOrDefaultAsync();
+            if (Goal == null)
+            {
+                navigationManager.NavigateTo("notfound");
+            }
         }
         else
         {
-            NavigationManager.NavigateTo("/Goals");
+            navigationManager.NavigateTo("/Goals");
         }
+    }
+    public async Task EditGoals()
+    {
+        var title = Model.Title;
+        var goalDate = Model.GoalDate;
+        var description = Model.Description;
+        var amount = Model.Amount;
+
+
+        // Update the TodoTask in the database
+        var filter = Builders<Goal>.Filter.Eq(t => t.Id, Goal.Id);
+        var update = Builders<Goal>.Update
+        .Set(g => g.Title, Goal.Title)
+        .Set(g => g.GoalDate, Goal.GoalDate)
+        .Set(g => g.Description, Goal.Description)
+        .Set(g => g.Amount, Goal.Amount);
+
+        await dbContext.Goal.UpdateOneAsync(filter, update);
+
+        navigationManager.NavigateTo("/Goals", true);
     }
 }

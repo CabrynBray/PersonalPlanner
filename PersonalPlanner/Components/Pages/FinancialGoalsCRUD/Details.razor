@@ -1,8 +1,10 @@
 ﻿@page "/Goals/details"
-@inject PersonalPlanner.Data.MongoDBContext DB
-@using PersonalPlanner
-@inject NavigationManager NavigationManager
+@using PersonalPlanner.Data
+@using PersonalPlanner.Models.ViewModels
+@using PersonalPlanner.Models
 @using MongoDB.Driver
+@inject MongoDBContext dbContext
+@inject NavigationManager navigationManager
 
 <PageTitle>Details</PageTitle>
 
@@ -18,13 +20,13 @@
     else
     {
         <dl class="row">
-            <dt class="col-sm-2">Title</dt>
+            <dt class="col-sm-2">Title:</dt>
             <dd class="col-sm-10">@Goal.Title</dd>
-            <dt class="col-sm-2">GoalDate</dt>
+            <dt class="col-sm-2">Goal Date:</dt>
             <dd class="col-sm-10">@Goal.GoalDate</dd>
-            <dt class="col-sm-2">Description</dt>
+            <dt class="col-sm-2">Description:</dt>
             <dd class="col-sm-10">@Goal.Description</dd>
-            <dt class="col-sm-2">Amount</dt>
+            <dt class="col-sm-2">Amount:</dt>
             <dd class="col-sm-10">@Goal.Amount</dd>
         </dl>
         <div>
@@ -35,25 +37,23 @@
 </div>
 
 @code {
-    Goal? Goal;
-
-    [SupplyParameterFromQuery]
-    public int Id { get; set; }
-
+    public Goal Goal { get; set; } = new();
     protected override async Task OnInitializedAsync()
     {
-        if (Id == 0)
+        var uri = navigationManager.ToAbsoluteUri(navigationManager.Uri);
+        var query = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query);
+        if (query.TryGetValue("id", out var idValue) && int.TryParse(idValue, out var id))
         {
-            NavigationManager.NavigateTo("/Goals");
-            return;
+            var filter = Builders<Goal>.Filter.Eq(t => t.Id, id);
+            Goal = await dbContext.Goal.Find(filter).FirstOrDefaultAsync();
+            if (Goal == null)
+            {
+                navigationManager.NavigateTo("notfound");
+            }
         }
-
-        var filter = Builders<Goal>.Filter.Eq(g => g.Id, Goal?.Id);
-        Goal = await DB.Goal.Find(filter).FirstOrDefaultAsync();
-
-        if (Goal == null)
+        else
         {
-            NavigationManager.NavigateTo("notfound");
+            navigationManager.NavigateTo("/Goals");
         }
     }
 }

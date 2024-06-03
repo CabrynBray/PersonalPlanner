@@ -1,8 +1,10 @@
 ﻿@page "/Goals/delete"
+@using PersonalPlanner.Data
+@using PersonalPlanner.Models.ViewModels
+@using PersonalPlanner.Models
 @using MongoDB.Driver
-@inject PersonalPlanner.Data.MongoDBContext DB
-@using PersonalPlanner
-@inject NavigationManager NavigationManager
+@inject MongoDBContext DB
+@inject NavigationManager navigationManager
 
 <PageTitle>Delete</PageTitle>
 
@@ -42,25 +44,24 @@
 </div>
 
 @code {
-    Goal? Goal;
-
-    [SupplyParameterFromQuery]
-    public int Id { get; set; }
+    public Goal Goal { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
-        if (Id == 0)
+        var uri = navigationManager.ToAbsoluteUri(navigationManager.Uri);
+        var query = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query);
+        if (query.TryGetValue("id", out var idValue) && int.TryParse(idValue, out var id))
         {
-            NavigationManager.NavigateTo("/Goals");
-            return;
+            var filter = Builders<Goal>.Filter.Eq(t => t.Id, id);
+            Goal = await DB.Goal.Find(filter).FirstOrDefaultAsync();
+            if (Goal == null)
+            {
+                navigationManager.NavigateTo("notfound");
+            }
         }
-
-        var filter = Builders<Goal>.Filter.Eq(g => g.Id, Goal?.Id);
-        Goal = await DB.Goal.Find(filter).FirstOrDefaultAsync();
-
-        if (Goal == null)
+        else
         {
-            NavigationManager.NavigateTo("notfound");
+            navigationManager.NavigateTo("/Goals");
         }
     }
 
@@ -68,20 +69,16 @@
     {
         if (Goal == null) return;
 
-        var filter = Builders<Goal>.Filter.Eq(g => g.Id, Goal.Id);
-        var deleteResult = await DB.Goal.DeleteOneAsync(filter);
+        var filter = Builders<TodoTask>.Filter.Eq(t => t.Id, Goal.Id);
+        var deleteResult = await DB.Todo.DeleteOneAsync(filter);
 
         if (deleteResult.DeletedCount == 0)
         {
-            NavigationManager.NavigateTo("notfound");
+            navigationManager.NavigateTo("notfound");
         }
         else
         {
-            NavigationManager.NavigateTo("/Goals");
+            navigationManager.NavigateTo("/Goals", true);
         }
-
-        @* DB.Goal.Remove(Goal!);
-await DB.SaveChangesAsync();
-NavigationManager.NavigateTo("/Goals"); *@
     }
 }
