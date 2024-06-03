@@ -248,11 +248,11 @@
 		0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23
 	};
 
-	private void GetDia()
+	private async Task GetDia()
 	{
 		DateTime currentDate = _selectedDateDia;
 
-		eventosDia = hourEventService.GetEvents(_selectedDateDia);
+		eventosDia = await hourEventService.GetEvents(_selectedDateDia, _selectedDateDia);
 
 		foreach (HourEvent e in eventosDia)
 		{
@@ -301,9 +301,9 @@
 
 	}
 
-	private void PopulateLists()
+	private async Task PopulateLists()
 	{
-		eventosDia = hourEventService.GetEvents(_selectedDateDia, _selectedDateDia);
+		eventosDia = await hourEventService.GetEvents(_selectedDateDia, _selectedDateDia);
 	}
 
 	private void CloseModalDiaView()
@@ -318,9 +318,9 @@
 		hourEvent.HourEventHour = hour;
 	}
 
-	private void SaveNoteDiaView()
+	private async Task SaveNoteDiaView()
 	{
-		hourEvent = hourEventService.SaveOrUpdate(hourEvent);
+		hourEvent = await hourEventService.CreateAsync(hourEvent);
 
 		hourEvent.HourEventDay = _selectedDateDia;
 

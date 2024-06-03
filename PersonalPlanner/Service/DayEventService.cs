@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using PersonalPlanner.Data;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace Calendar.Service
 {
@@ -44,6 +45,12 @@ namespace Calendar.Service
 		}
 			
 		public async Task<DayEvent> CreateAsync(DayEvent dayEvent) {
+			// Get the maximum existing ID
+			int maxId = await db.DayEvent.AsQueryable().MaxAsync(g => (int?)g.DayEventId) ?? 0;
+
+			// Increment the ID to get the next available number
+			dayEvent.DayEventId = maxId + 1;
+
 			if (dayEvent.DayEventId == 0) {
 				var insert = db.DayEvent.InsertOneAsync(dayEvent);
 			} else {

@@ -192,10 +192,10 @@
 		days = day1.Distinct().ToList();
 	}
 
-	private void GenerateCalenderBody()
+	private async Task GenerateCalenderBody()
 	{
 		weeks = new List<WeekClass>();
-		var dayEvents = dayEventService.GetEvents(startDate, endDate);
+		var dayEvents = await dayEventService.GetEvents(startDate, endDate);
 
 		int flag = 0;
 		WeekClass week = new WeekClass();
@@ -245,21 +245,21 @@
 		ResetModal();
 	}
 
-	private void OpenModal(int wIndex, int dIndex)
+	private async Task OpenModal(int wIndex, int dIndex)
 	{
 
 		selectedWeekIndex = wIndex;
 		selectedDayIndex = dIndex;
 
-		var dayEventObj = dayEventService.GetEvent(Convert.ToDateTime(weeks[wIndex].Dates[dIndex].DateValue));
+		var dayEventObj = await dayEventService.GetAsync(Convert.ToDateTime(weeks[wIndex].Dates[dIndex].DateValue));
 		dayEvent = dayEventObj;
 
 		displayModal = true;
 	}
 
-	private void SaveNote()
+	private async Task SaveNote()
 	{
-		dayEvent = dayEventService.SaveOrUpdate(dayEvent);
+		dayEvent = await dayEventService.CreateAsync(dayEvent);
 		if (dayEvent.DayEventId > 0)
 		{
 			weeks[selectedWeekIndex].Dates[selectedDayIndex].DayEventId = dayEvent.DayEventId;

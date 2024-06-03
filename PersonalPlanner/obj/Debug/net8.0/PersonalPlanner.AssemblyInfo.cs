@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PersonalPlanner")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ac8fff2861220eba586134e9bb01ee638de6b69")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b0b0e203fc499e08dfd952a11de3e83d8fc1c431")]
 [assembly: System.Reflection.AssemblyProductAttribute("PersonalPlanner")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PersonalPlanner")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

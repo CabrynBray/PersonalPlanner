@@ -6,6 +6,7 @@ using Dapper;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using PersonalPlanner.Data;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace Calendar.Service
 {
@@ -45,6 +46,12 @@ namespace Calendar.Service
 		}
 
 		public async Task<HourEvent> CreateAsync(HourEvent hourEvent) {
+			// Get the maximum existing ID
+			int maxId = await db.HourEvent.AsQueryable().MaxAsync(g => (int?)g.HourEventId) ?? 0;
+
+			// Increment the ID to get the next available number
+			hourEvent.HourEventId = maxId + 1;
+
 			if (hourEvent.HourEventId == 0) {
 				var insert = db.HourEvent.InsertOneAsync(hourEvent);
 			} else {
