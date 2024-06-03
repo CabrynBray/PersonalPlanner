@@ -69,8 +69,8 @@
     {
         if (Goal == null) return;
 
-        var filter = Builders<TodoTask>.Filter.Eq(t => t.Id, Goal.Id);
-        var deleteResult = await DB.Todo.DeleteOneAsync(filter);
+        var filter = Builders<Goal>.Filter.Eq(t => t.Id, Goal.Id);
+        var deleteResult = await DB.Goal.DeleteOneAsync(filter);
 
         if (deleteResult.DeletedCount == 0)
         {

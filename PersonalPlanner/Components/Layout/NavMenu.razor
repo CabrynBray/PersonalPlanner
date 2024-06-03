@@ -14,53 +14,43 @@
             </NavLink>
         </div>
 
-        <AuthorizeView Roles="Administrator,User">
-            <Authorized>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="counter">
-                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-                    </NavLink>
-                </div>
-            </Authorized>
-        </AuthorizeView>
-
         <AuthorizeView Roles="Administrator">
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="weather">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+                    <span class="bi bi-weather-nav-menu" aria-hidden="true"></span> Weather
                 </NavLink>
             </div>
         </AuthorizeView>
 
+<AuthorizeView Roles="Administrator,User">
+    <Authorized>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="Goals">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Financial Goals
+                <span class="bi bi-goals-nav-menu" aria-hidden="true"></span> Financial Goals
             </NavLink>
         </div>
+        </Authorized>
+</AuthorizeView>
 
+<AuthorizeView Roles="Administrator,User">
+    <Authorized>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="Todos">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> To-Do List
+                <span class="bi bi-todo-nav-menu" aria-hidden="true"></span> To-Do List
             </NavLink>
         </div>
+</Authorized>
+</AuthorizeView>
 
+<AuthorizeView Roles="Administrator,User">
+    <Authorized>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="calendarmonth">
-                <span class="oi oi-plus" aria-hidden="true"></span> Calendar View Month
+            <NavLink class="nav-link" href="Calendar">
+                <span class="bi bi-calendar-nav-menu" aria-hidden="true"></span> Calender
             </NavLink>
         </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="calendarweek">
-                <span class="oi oi-plus" aria-hidden="true"></span> Calendar View Week
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="calendarday">
-                <span class="oi oi-plus" aria-hidden="true"></span> Calendar View Day
-            </NavLink>
-        </div>
+        </Authorized>
+</AuthorizeView>
 
 
     </nav>

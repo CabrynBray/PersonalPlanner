@@ -20,29 +20,29 @@ else
 {
     <div class="row">
         <div class="col-md-4">
-            <EditForm Model="Goal" OnValidSubmit="EditGoals" FormName="editForm">
+            <EditForm Model="@Model" OnValidSubmit="EditGoals" FormName="editForm">
                 <DataAnnotationsValidator />
                 <ValidationSummary />
                 <input type="hidden" name="Id" value="@Goal.Id" />
                 <div class="mb-3">
                     <label for="title" class="form-label">Title:</label>
-                    <InputText id="title" @bind-Value="Goal.Title" class="form-control" />
-                    <ValidationMessage For="() => Goal.Title" class="text-danger" />
+                    <InputText id="title" @bind-Value="Model.Title" class="form-control" placeholder="@Goal.Title" />
+                    <ValidationMessage For="() => Model.Title" class="text-danger" />
                 </div>
                 <div class="mb-3">
                     <label for="GoalDate" class="form-label">GoalDate:</label>
-                    <InputDate id="GoalDate" @bind-Value="Goal.GoalDate" class="form-control" />
-                    <ValidationMessage For="() => Goal.GoalDate" class="text-danger" />
+                    <InputDate id="GoalDate" @bind-Value="Model.GoalDate" class="form-control" placeholder="@Goal.GoalDate" />
+                    <ValidationMessage For="() => Model.GoalDate" class="text-danger" />
                 </div>
                 <div class="mb-3">
                     <label for="Description" class="form-label">Description:</label>
-                    <InputText id="Description" @bind-Value="Goal.Description" class="form-control" />
-                    <ValidationMessage For="() => Goal.Description" class="text-danger" />
+                    <InputText id="Description" @bind-Value="Model.Description" class="form-control" placeholder="@Goal.Description" />
+                    <ValidationMessage For="() => Model.Description" class="text-danger" />
                 </div>
                 <div class="mb-3">
                     <label for="Amount" class="form-label">Amount:</label>
-                    <InputNumber id="Amount" @bind-Value="Goal.Amount" class="form-control" />
-                    <ValidationMessage For="() => Goal.Amount" class="text-danger" />
+                    <InputNumber id="Amount" @bind-Value="Model.Amount" class="form-control" placeholder="@Goal.Amount" />
+                    <ValidationMessage For="() => Model.Amount" class="text-danger" />
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
             </EditForm>
@@ -55,7 +55,9 @@ else
 </div>
 
 @code {
+    [SupplyParameterFromForm]
     public EditGoalsModels Model { get; set; } = new();
+    
     public Goal Goal { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
@@ -83,14 +85,19 @@ else
         var description = Model.Description;
         var amount = Model.Amount;
 
+        // Update the Goal object
+            Goal.Title = title;
+            Goal.GoalDate = goalDate;
+            Goal.Description = description;
+            Goal.Amount = amount;
 
         // Update the TodoTask in the database
         var filter = Builders<Goal>.Filter.Eq(t => t.Id, Goal.Id);
         var update = Builders<Goal>.Update
-        .Set(g => g.Title, Goal.Title)
-        .Set(g => g.GoalDate, Goal.GoalDate)
-        .Set(g => g.Description, Goal.Description)
-        .Set(g => g.Amount, Goal.Amount);
+        .Set("Title" , Goal.Title)
+        .Set("GoalDate", Goal.GoalDate)
+        .Set("Description", Goal.Description)
+        .Set("Amount", Goal.Amount);
 
         await dbContext.Goal.UpdateOneAsync(filter, update);
 

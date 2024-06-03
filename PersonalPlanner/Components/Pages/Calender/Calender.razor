@@ -1,0 +1,274 @@
+@page "/calendar"
+@using System.Globalization
+@using MongoDB.Driver
+@using PersonalPlanner.Models
+@using PersonalPlanner.Data
+@inject MongoDBContext dbContext
+@rendermode InteractiveServer
+
+<PageTitle>Calendar</PageTitle>
+
+<h1>Calendar</h1>
+
+<div class="d-flex justify-content-center mb-3">
+    <button class="btn btn-primary mx-2" @onclick="ShowPrevious">Previous</button>
+    <span class="h5 my-auto mx-2">@currentViewLabel</span>
+    <button class="btn btn-primary mx-2" @onclick="ShowNext">Next</button>
+    <button class="btn btn-secondary mx-2" @onclick="ToggleView">@currentViewButtonLabel</button>
+</div>
+
+<div class="d-flex justify-content-center mb-3">
+    <div class="d-flex align-items-center mx-2">
+        <span class="badge bg-success mx-1">&nbsp;</span> To-Do
+    </div>
+    <div class="d-flex align-items-center mx-2">
+        <span class="badge bg-danger mx-1">&nbsp;</span> Financial Goal
+    </div>
+</div>
+
+<div class="calendar">
+    @if (isMonthView)
+    {
+        @foreach (var week in weeks)
+        {
+            <div class="row">
+                @foreach (var day in week)
+                {
+                    <div class="col border p-2">
+                        @if (day.HasValue)
+                        {
+                            <div>@day.Value.Day</div>
+                            <div class="entries">
+                                @foreach (var todo in GetTodosForDay(day.Value))
+                                {
+                                    <div class="alert alert-success p-1 m-1">@todo.Todo</div>
+                                }
+                                @foreach (var goal in GetGoalsForDay(day.Value))
+                                {
+                                    <div class="alert alert-danger p-1 m-1">@goal.Title</div>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    }
+    else
+    {
+        var week = weeks[currentWeekIndex];
+        <div class="row">
+            @foreach (var day in week)
+            {
+                <div class="col border p-2">
+                    @if (day.HasValue)
+                    {
+                        <div>@day.Value.ToString("dddd, MMM d")</div>
+                        <div class="entries">
+                            @foreach (var todo in GetTodosForDay(day.Value))
+                            {
+                                <div class="alert alert-success p-1 m-1">@todo.Todo</div>
+                            }
+                            @foreach (var goal in GetGoalsForDay(day.Value))
+                            {
+                                <div class="alert alert-danger p-1 m-1">@goal.Title</div>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .calendar .row {
+        display: flex;
+    }
+
+    .calendar .col {
+        flex: 1;
+        min-height: 100px;
+    }
+
+    .entries {
+        margin-top: 0.5em;
+    }
+
+    .alert {
+        padding: 0.25rem;
+        margin-bottom: 0.25rem;
+        text-align: left;
+    }
+</style>
+
+@code {
+    private int currentYear = DateTime.Now.Year;
+    private int currentMonth = DateTime.Now.Month;
+    private int currentWeekIndex = 0;
+    private bool isMonthView = true;
+
+    private string currentMonthName => CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(currentMonth);
+    private string currentViewLabel => isMonthView ? $"{currentMonthName} {currentYear}" : $"Week {currentWeekIndex + 1}";
+    private string currentViewButtonLabel => isMonthView ? "Switch to Week View" : "Switch to Month View";
+
+    private List<List<DateTime?>> weeks = new();
+    private List<TodoTask> todoTasks = new();
+    private List<Goal> goals = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+        GenerateCalendar();
+    }
+
+    private async Task LoadData()
+    {
+        todoTasks = await dbContext.Todo.Find(FilterDefinition<TodoTask>.Empty).ToListAsync();
+        goals = await dbContext.Goal.Find(FilterDefinition<Goal>.Empty).ToListAsync();
+    }
+
+    private void GenerateCalendar()
+    {
+        var daysInMonth = DateTime.DaysInMonth(currentYear, currentMonth);
+        var firstDayOfMonth = new DateTime(currentYear, currentMonth, 1);
+        var lastDayOfMonth = new DateTime(currentYear, currentMonth, daysInMonth);
+
+        weeks = new List<List<DateTime?>>();
+        var currentWeek = new List<DateTime?>();
+
+        // Fill the first week with leading empty days
+        for (int i = 0; i < (int)firstDayOfMonth.DayOfWeek; i++)
+        {
+            currentWeek.Add(null);
+        }
+
+        // Fill the calendar with days of the current month
+        for (int day = 1; day <= daysInMonth; day++)
+        {
+            currentWeek.Add(new DateTime(currentYear, currentMonth, day));
+
+            if (currentWeek.Count == 7)
+            {
+                weeks.Add(currentWeek);
+                currentWeek = new List<DateTime?>();
+            }
+        }
+
+        // Fill the last week with trailing empty days
+        while (currentWeek.Count < 7)
+        {
+            currentWeek.Add(null);
+        }
+
+        if (currentWeek.Any(d => d.HasValue))
+        {
+            weeks.Add(currentWeek);
+        }
+    }
+
+    private void ShowPrevious()
+    {
+        if (isMonthView)
+        {
+            if (currentMonth == 1)
+            {
+                currentMonth = 12;
+                currentYear--;
+            }
+            else
+            {
+                currentMonth--;
+            }
+            GenerateCalendar();
+        }
+        else
+        {
+            if (currentWeekIndex > 0)
+            {
+                currentWeekIndex--;
+            }
+            else
+            {
+                ShowPreviousMonth();
+                currentWeekIndex = weeks.Count - 1;
+            }
+        }
+    }
+
+    private void ShowNext()
+    {
+        if (isMonthView)
+        {
+            if (currentMonth == 12)
+            {
+                currentMonth = 1;
+                currentYear++;
+            }
+            else
+            {
+                currentMonth++;
+            }
+            GenerateCalendar();
+        }
+        else
+        {
+            if (currentWeekIndex < weeks.Count - 1)
+            {
+                currentWeekIndex++;
+            }
+            else
+            {
+                ShowNextMonth();
+                currentWeekIndex = 0;
+            }
+        }
+    }
+
+    private void ToggleView()
+    {
+        isMonthView = !isMonthView;
+        if (!isMonthView)
+        {
+            currentWeekIndex = 0;
+        }
+    }
+
+    private void ShowPreviousMonth()
+    {
+        if (currentMonth == 1)
+        {
+            currentMonth = 12;
+            currentYear--;
+        }
+        else
+        {
+            currentMonth--;
+        }
+        GenerateCalendar();
+    }
+
+    private void ShowNextMonth()
+    {
+        if (currentMonth == 12)
+        {
+            currentMonth = 1;
+            currentYear++;
+        }
+        else
+        {
+            currentMonth++;
+        }
+        GenerateCalendar();
+    }
+
+    private IEnumerable<TodoTask> GetTodosForDay(DateTime date)
+    {
+        return todoTasks.Where(t => t.DueDate?.Date == date.Date);
+    }
+
+    private IEnumerable<Goal> GetGoalsForDay(DateTime date)
+    {
+        return goals.Where(g => g.GoalDate?.Date == date.Date);
+    }
+}
