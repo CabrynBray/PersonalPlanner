@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\OneDrive\\Documents\\Team4Group\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj": {}
+    "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\OneDrive\\Documents\\Team4Group\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj": {
+    "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Documents\\Team4Group\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj",
+        "projectUniqueName": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj",
         "projectName": "PersonalPlanner",
-        "projectPath": "C:\\Users\\HP\\OneDrive\\Documents\\Team4Group\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\OneDrive\\Documents\\Team4Group\\Team4GroupProject\\PersonalPlanner\\obj\\",
+        "projectPath": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\PersonalPlanner.csproj",
+        "packagesPath": "C:\\Users\\Jared\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jared\\Documents\\BYU\\CSE 325\\Group project repo\\Team4GroupProject\\PersonalPlanner\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Jared\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -98,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

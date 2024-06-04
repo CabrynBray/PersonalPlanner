@@ -4,8 +4,6 @@ using PersonalPlanner.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using DotNetEnv;
 using MongoDB.Driver;
-using Calendar.IService;
-using Calendar.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,8 +33,6 @@ var mongoDBSettings = new MongoDBSettings
 };
 builder.Services.AddSingleton(mongoDBSettings);
 builder.Services.AddSingleton<MongoDBContext>();
-builder.Services.AddScoped<IDayEventService, DayEventService>();
-builder.Services.AddScoped<IHourEventService, HourEventService>();
 
 
 var app = builder.Build();
