@@ -1,69 +1,122 @@
-@page "/budget/edit/{Id}"
-@using PersonalPlanner.Services
-@inject BudgetService BudgetService
-@inject NavigationManager Navigation
-@using PersonalPlanner
+@page "/budget/edit"
+
+@using PersonalPlanner.Data
+@using PersonalPlanner.Models.ViewModels
+@using PersonalPlanner.Models
+@using MongoDB.Driver
+@inject MongoDBContext dbContext
+@inject NavigationManager navigationManager
+
 
 <PageTitle>Edit Budget</PageTitle>
 
 <h1>Edit Budget</h1>
 
-<EditForm Model="Budget" OnValidSubmit="UpdateBudget">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm Model="@Model" OnValidSubmit="UpdateBudget" FormName="editForm">
+            <DataAnnotationsValidator />
+            <input type="hidden" name="Id" value="@Budgets.Id" />
 
-    <div class="mb-3">
-        <label for="title" class="form-label">Title:</label>
-        <InputText id="title" @bind-Value="Budget.Title" class="form-control" />
-        <ValidationMessage For="() => Budget.Title" class="text-danger" />
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <InputText @bind-Value="Model.Title" class="form-control" placeholder="@Budgets.Title" />
+                <ValidationMessage For="() => Model.Title" class="text-danger" />
+            </div>
+
+            <div class="mb-3">
+                <label for="amount" class="form-label">Amount:</label>
+                <InputNumber @bind-Value="Model.Amount" class="form-control" placeholder="@Budgets.Currency" />
+                <ValidationMessage For="() => Model.Amount" class="text-danger" />
+                <label for="currency" class="form-label">Currency:</label>
+                <InputSelect @bind-Value="Model.Currency" class="form-control">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <!-- Add more currencies as needed -->
+                </InputSelect>
+                <ValidationMessage For="() => Model.Currency" class="text-danger" />
+            </div>
+
+            <div class="mb-3">
+                <label for="startDate" class="form-label">Start Date:</label>
+                <InputDate @bind-Value="Model.StartDate" class="form-control" />
+                <ValidationMessage For="() => Model.StartDate" class="text-danger" />
+            </div>
+
+            <div class="mb-3">
+                <label for="endDate" class="form-label">End Date:</label>
+                <InputDate @bind-Value="Model.EndDate" class="form-control" />
+                <ValidationMessage For="() => Model.EndDate" class="text-danger" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+        </EditForm>
+
     </div>
-
-    <div class="mb-3">
-        <label for="amount" class="form-label">Amount:</label>
-        <InputNumber id="amount" @bind-Value="Budget.Amount" class="form-control" />
-        <ValidationMessage For="() => Budget.Amount" class="text-danger" />
-        <label for="currency" class="form-label">Currency:</label>
-        <InputSelect id="currency" @bind-Value="Budget.Currency" class="form-control">
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <!-- Add more currencies as needed -->
-        </InputSelect>
-        <ValidationMessage For="() => Budget.Currency" class="text-danger" />
-    </div>
-
-    <div class="mb-3">
-        <label for="startDate" class="form-label">Start Date:</label>
-        <InputDate id="startDate" @bind-Value="Budget.StartDate" class="form-control" />
-        <ValidationMessage For="() => Budget.StartDate" class="text-danger" />
-    </div>
-
-    <div class="mb-3">
-        <label for="endDate" class="form-label">End Date:</label>
-        <InputDate id="endDate" @bind-Value="Budget.EndDate" class="form-control" />
-        <ValidationMessage For="() => Budget.EndDate" class="text-danger" />
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save Changes</button>
-    <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
-</EditForm>
+</div>
+<div>
+    <a href="/Budget">Back to List</a>
+</div>
 
 @code {
-    [Parameter] public string Id { get; set; }
-    private Budget Budget;
+    [SupplyParameterFromForm]
+    public UpdateBudgetModel Model { get; set; } = new();
+
+    public Budget? Budgets { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
-        Budget = await BudgetService.GetBudgetAsync(Id);
+        var uri = navigationManager.ToAbsoluteUri(navigationManager.Uri);
+        var query = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query);
+        if (query.TryGetValue("id", out var idValue) && int.TryParse(idValue, out var id))
+        {
+            var filter = Builders<Budget>.Filter.Eq(t => t.Id, id);
+            Budgets = await dbContext.Budgets.Find(filter).FirstOrDefaultAsync();
+            if (Budgets == null)
+            {
+                navigationManager.NavigateTo("notfound");
+            }
+        }
+        else
+        {
+            navigationManager.NavigateTo("/Budget");
+        }
     }
 
-    private async Task UpdateBudget()
+    public async Task UpdateBudget()
     {
-        await BudgetService.UpdateBudgetAsync(Budget);
-        Navigation.NavigateTo("/budget");
-    }
+        // Get the values from the form fields
+        var title = Model.Title;
+        var amount = Model.Amount;
+        var currency = Model.Currency;
+        var startDate = Model.StartDate;
+        var endDate = Model.EndDate;
 
+        // Update the Budget object
+        Budgets.Title = title;
+        Budgets.Amount = amount;
+        Budgets.Currency = currency;
+        Budgets.StartDate = startDate;
+        Budgets.EndDate = endDate;
+
+        // Update the Budget in the database
+        var filter = Builders<Budget>.Filter.Eq(t => t.Id, Budgets.Id);
+        var update = Builders<Budget>.Update
+        .Set("Title", title)
+        .Set("Amount", amount)
+        .Set("Currency", currency)
+        .Set("StartDate", startDate)
+        .Set("EndDate", endDate);
+
+        await dbContext.Budgets.UpdateOneAsync(filter, update).ConfigureAwait(false);
+
+        navigationManager.NavigateTo("/Budget", true);
+
+
+    }
     private void Cancel()
     {
-        Navigation.NavigateTo("/budget");
+        navigationManager.NavigateTo("/Budget");
     }
 }

@@ -6,7 +6,6 @@ using DotNetEnv;
 using MongoDB.Driver;
 using Calendar.IService;
 using Calendar.Service;
-using PersonalPlanner.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +37,6 @@ builder.Services.AddSingleton(mongoDBSettings);
 builder.Services.AddSingleton<MongoDBContext>();
 builder.Services.AddScoped<IDayEventService, DayEventService>();
 builder.Services.AddScoped<IHourEventService, HourEventService>();
-builder.Services.AddScoped<BudgetService>();
 
 
 var app = builder.Build();

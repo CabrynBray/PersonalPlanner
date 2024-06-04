@@ -1,57 +1,85 @@
 @page "/budget/create"
-@using PersonalPlanner.Services
-@inject BudgetService BudgetService
-@inject NavigationManager Navigation
+@inject PersonalPlanner.Data.MongoDBContext DB
+@using MongoDB.Driver.Linq
 @using PersonalPlanner
+@inject NavigationManager NavigationManager
+
+@using MongoDB.Driver
+@using PersonalPlanner.Data
+@inject MongoDBContext dbContext
 
 <PageTitle>Create Budget</PageTitle>
 
-<h1>Create Budget</h1>
+<h1>Create New Budget</h1>
 
-<EditForm Model="NewBudget" OnValidSubmit="CreateBudget" FormName="budgetCreation">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Budgets" OnValidSubmit="CreateBudget" FormName="budgetCreation" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
 
-    <div class="mb-3">
-        <label for="title" class="form-label">Title:</label>
-        <InputText id="title" @bind-Value="NewBudget.Title" class="form-control" />
-        <ValidationMessage For="() => NewBudget.Title" class="text-danger" />
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <InputText id="title" @bind-Value="Budgets.Title" class="form-control" />
+                <ValidationMessage For="() => Budgets.Title" class="text-danger" />
+            </div>
+
+            <div class="mb-3">
+                <label for="amount" class="form-label">Amount:</label>
+                <InputNumber id="amount" @bind-Value="Budgets.Amount" class="form-control" />
+                <ValidationMessage For="() => Budgets.Amount" class="text-danger" />
+                <label for="currency" class="form-label">Currency:</label>
+                <InputSelect id="currency" @bind-Value="Budgets.Currency" class="form-control">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <!-- Add more currencies as needed -->
+                </InputSelect>
+                <ValidationMessage For="() => Budgets.Currency" class="text-danger" />
+            </div>
+
+            <div class="mb-3">
+                <label for="startDate" class="form-label">Start Date:</label>
+                <InputDate id="startDate" @bind-Value="Budgets.StartDate" class="form-control" />
+                <ValidationMessage For="() => Budgets.StartDate" class="text-danger" />
+            </div>
+
+            <div class="mb-3">
+                <label for="endDate" class="form-label">End Date:</label>
+                <InputDate id="endDate" @bind-Value="Budgets.EndDate" class="form-control" />
+                <ValidationMessage For="() => Budgets.EndDate" class="text-danger" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create Budget</button>
+        </EditForm>
     </div>
+</div>
 
-    <div class="mb-3">
-        <label for="amount" class="form-label">Amount:</label>
-        <InputNumber id="amount" @bind-Value="NewBudget.Amount" class="form-control" />
-        <ValidationMessage For="() => NewBudget.Amount" class="text-danger" />
-        <label for="currency" class="form-label">Currency:</label>
-        <InputSelect id="currency" @bind-Value="NewBudget.Currency" class="form-control">
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <!-- Add more currencies as needed -->
-        </InputSelect>
-        <ValidationMessage For="() => NewBudget.Currency" class="text-danger" />
-    </div>
-
-    <div class="mb-3">
-        <label for="startDate" class="form-label">Start Date:</label>
-        <InputDate id="startDate" @bind-Value="NewBudget.StartDate" class="form-control" />
-        <ValidationMessage For="() => NewBudget.StartDate" class="text-danger" />
-    </div>
-
-    <div class="mb-3">
-        <label for="endDate" class="form-label">End Date:</label>
-        <InputDate id="endDate" @bind-Value="NewBudget.EndDate" class="form-control" />
-        <ValidationMessage For="() => NewBudget.EndDate" class="text-danger" />
-    </div>
-
-    <button type="submit" class="btn btn-primary">Create Budget</button>
-</EditForm>
+<div>
+    <a href="/Budget">Back to List</a>
+</div>
 
 @code {
-    private Budget NewBudget = new Budget();
+    [SupplyParameterFromForm]
+    public Budget Budgets { get; set; } = new();
 
-    private async Task CreateBudget()
+    public async Task CreateBudget()
     {
-        await BudgetService.AddBudgetAsync(NewBudget);
-        Navigation.NavigateTo("/budget");
+        var budgetCollection = dbContext.Budgets;
+
+        // Get the maximum existing ID
+        var maxId = await budgetCollection.AsQueryable()
+        .Select(g => (int?)g.Id)
+        .ToListAsync();
+
+        int newId = maxId.Any() ? maxId.Max().GetValueOrDefault() + 1 : 1;
+
+        // Assign the new ID
+        Budgets.Id = newId;
+
+        // Insert the new todo item
+        await budgetCollection.InsertOneAsync(Budgets);
+
+        // Navigate back to the list of todos
+        NavigationManager.NavigateTo("/Budget");
     }
 }

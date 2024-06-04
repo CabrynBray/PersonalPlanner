@@ -1,8 +1,12 @@
 @page "/budget"
-@using PersonalPlanner.Services
-@inject BudgetService BudgetService
-@inject NavigationManager Navigation
+@using MongoDB.Driver
+@using MongoDB.Driver.Linq
+@using PersonalPlanner.Data
+@inject MongoDBContext dbContext
+@inject PersonalPlanner.Data.MongoDBContext DB
+@inject NavigationManager NavigationManager
 @using PersonalPlanner
+@rendermode InteractiveServer
 
 <PageTitle>Budgets</PageTitle>
 
@@ -18,30 +22,52 @@
 }
 else
 {
-    <div>
-        @foreach (var budget in Budgets)
-        {
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">@budget.Title</h5>
-                    <p class="card-text">
-                        Amount: @budget.Amount @budget.Currency <br />
-                        Start Date: @budget.StartDate.ToShortDateString() <br />
-                        End Date: @budget.EndDate.ToShortDateString()
-                    </p>
-                    <a href="@($"/budget/edit/{budget.Id}")" class="btn btn-secondary">Edit Budget</a>
-                    <a href="@($"/budget/delete/{budget.Id}")" class="btn btn-danger">Delete Budget</a>
-                </div>
-            </div>
-        }
-    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Amount</th>
+                <th>Currency</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var budget in budgets)
+            {
+                <tr>
+                    <td>@budget.Title</td>
+                    <td>@budget.Amount</td>
+                    <td>@budget.Currency</td>
+                    <td>@budget.StartDate?.ToString("MM/dd/yyyy")</td>
+                    <td>@budget.EndDate?.ToString("MM/dd/yyyy")</td>
+                    <td>
+                        <a href="@($"/budget/edit?id={budget.Id}")">Update</a> |
+                        <a href="@($"/budget/Delete?id={budget.Id}")">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
 @code {
-    private List<Budget> Budgets;
+    private string filter = "";
+    private List<Budget> budgets = new List<Budget>();
+    private List<Budget> Budgets => GetTasks();
 
     protected override async Task OnInitializedAsync()
     {
-        Budgets = await BudgetService.GetBudgetsAsync();
+        budgets = await dbContext.Budgets.Find(_ => true).ToListAsync();
+        StateHasChanged();
     }
+
+    private List<Budget> GetTasks()
+    {
+        var filteredBudget = string.IsNullOrEmpty(filter)
+        ? budgets
+        : budgets.Where(budge => budge.Title.Contains(filter, StringComparison.OrdinalIgnoreCase)).ToList();
+        return filteredBudget.ToList();
+    }
+
 }
