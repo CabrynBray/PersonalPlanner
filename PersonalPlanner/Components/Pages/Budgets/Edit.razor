@@ -1,0 +1,69 @@
+@page "/budget/edit/{Id}"
+@using PersonalPlanner.Services
+@inject BudgetService BudgetService
+@inject NavigationManager Navigation
+@using PersonalPlanner
+
+<PageTitle>Edit Budget</PageTitle>
+
+<h1>Edit Budget</h1>
+
+<EditForm Model="Budget" OnValidSubmit="UpdateBudget">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Title:</label>
+        <InputText id="title" @bind-Value="Budget.Title" class="form-control" />
+        <ValidationMessage For="() => Budget.Title" class="text-danger" />
+    </div>
+
+    <div class="mb-3">
+        <label for="amount" class="form-label">Amount:</label>
+        <InputNumber id="amount" @bind-Value="Budget.Amount" class="form-control" />
+        <ValidationMessage For="() => Budget.Amount" class="text-danger" />
+        <label for="currency" class="form-label">Currency:</label>
+        <InputSelect id="currency" @bind-Value="Budget.Currency" class="form-control">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <!-- Add more currencies as needed -->
+        </InputSelect>
+        <ValidationMessage For="() => Budget.Currency" class="text-danger" />
+    </div>
+
+    <div class="mb-3">
+        <label for="startDate" class="form-label">Start Date:</label>
+        <InputDate id="startDate" @bind-Value="Budget.StartDate" class="form-control" />
+        <ValidationMessage For="() => Budget.StartDate" class="text-danger" />
+    </div>
+
+    <div class="mb-3">
+        <label for="endDate" class="form-label">End Date:</label>
+        <InputDate id="endDate" @bind-Value="Budget.EndDate" class="form-control" />
+        <ValidationMessage For="() => Budget.EndDate" class="text-danger" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+</EditForm>
+
+@code {
+    [Parameter] public string Id { get; set; }
+    private Budget Budget;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Budget = await BudgetService.GetBudgetAsync(Id);
+    }
+
+    private async Task UpdateBudget()
+    {
+        await BudgetService.UpdateBudgetAsync(Budget);
+        Navigation.NavigateTo("/budget");
+    }
+
+    private void Cancel()
+    {
+        Navigation.NavigateTo("/budget");
+    }
+}

@@ -1,0 +1,47 @@
+@page "/budget"
+@using PersonalPlanner.Services
+@inject BudgetService BudgetService
+@inject NavigationManager Navigation
+@using PersonalPlanner
+
+<PageTitle>Budgets</PageTitle>
+
+<h1>Existing Budgets</h1>
+
+<p>
+    <a href="/budget/create" class="btn btn-primary">Create New Budget</a>
+</p>
+
+@if (Budgets == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div>
+        @foreach (var budget in Budgets)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">@budget.Title</h5>
+                    <p class="card-text">
+                        Amount: @budget.Amount @budget.Currency <br />
+                        Start Date: @budget.StartDate.ToShortDateString() <br />
+                        End Date: @budget.EndDate.ToShortDateString()
+                    </p>
+                    <a href="@($"/budget/edit/{budget.Id}")" class="btn btn-secondary">Edit Budget</a>
+                    <a href="@($"/budget/delete/{budget.Id}")" class="btn btn-danger">Delete Budget</a>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private List<Budget> Budgets;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Budgets = await BudgetService.GetBudgetsAsync();
+    }
+}

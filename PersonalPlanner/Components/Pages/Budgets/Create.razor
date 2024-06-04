@@ -1,0 +1,57 @@
+@page "/budget/create"
+@using PersonalPlanner.Services
+@inject BudgetService BudgetService
+@inject NavigationManager Navigation
+@using PersonalPlanner
+
+<PageTitle>Create Budget</PageTitle>
+
+<h1>Create Budget</h1>
+
+<EditForm Model="NewBudget" OnValidSubmit="CreateBudget" FormName="budgetCreation">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Title:</label>
+        <InputText id="title" @bind-Value="NewBudget.Title" class="form-control" />
+        <ValidationMessage For="() => NewBudget.Title" class="text-danger" />
+    </div>
+
+    <div class="mb-3">
+        <label for="amount" class="form-label">Amount:</label>
+        <InputNumber id="amount" @bind-Value="NewBudget.Amount" class="form-control" />
+        <ValidationMessage For="() => NewBudget.Amount" class="text-danger" />
+        <label for="currency" class="form-label">Currency:</label>
+        <InputSelect id="currency" @bind-Value="NewBudget.Currency" class="form-control">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <!-- Add more currencies as needed -->
+        </InputSelect>
+        <ValidationMessage For="() => NewBudget.Currency" class="text-danger" />
+    </div>
+
+    <div class="mb-3">
+        <label for="startDate" class="form-label">Start Date:</label>
+        <InputDate id="startDate" @bind-Value="NewBudget.StartDate" class="form-control" />
+        <ValidationMessage For="() => NewBudget.StartDate" class="text-danger" />
+    </div>
+
+    <div class="mb-3">
+        <label for="endDate" class="form-label">End Date:</label>
+        <InputDate id="endDate" @bind-Value="NewBudget.EndDate" class="form-control" />
+        <ValidationMessage For="() => NewBudget.EndDate" class="text-danger" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Budget</button>
+</EditForm>
+
+@code {
+    private Budget NewBudget = new Budget();
+
+    private async Task CreateBudget()
+    {
+        await BudgetService.AddBudgetAsync(NewBudget);
+        Navigation.NavigateTo("/budget");
+    }
+}
