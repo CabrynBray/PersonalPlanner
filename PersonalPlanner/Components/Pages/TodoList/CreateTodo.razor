@@ -3,6 +3,7 @@
 @using MongoDB.Driver.Linq
 @using PersonalPlanner
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 @using MongoDB.Driver
 @using PersonalPlanner.Data
@@ -44,6 +45,15 @@
 
     public async Task AddTodo()
     {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var userName = authState.User.Identity.Name;
+
+        if (string.IsNullOrEmpty(userName))
+        {
+            NavigationManager.NavigateTo("/Login");
+            return;
+        }
+
         var todoCollection = dbContext.Todo;
 
         // Get the maximum existing ID
@@ -53,8 +63,9 @@
 
         int newId = maxId.Any() ? maxId.Max().GetValueOrDefault() + 1 : 1;
 
-        // Assign the new ID
+        // Assign the new ID and user_name
         Todo.Id = newId;
+        Todo.user_name = userName;
 
         // Insert the new todo item
         await todoCollection.InsertOneAsync(Todo);

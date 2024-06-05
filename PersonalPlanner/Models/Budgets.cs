@@ -21,4 +21,5 @@ public class Budget
 
     [DataType(DataType.Date)]
     public DateTime? EndDate { get; set; }
+    public string user_name { get; set; }
 }

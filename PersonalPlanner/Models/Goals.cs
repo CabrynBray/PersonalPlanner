@@ -16,4 +16,5 @@ public class Goal
 
     [Range(0, 100000001)]
     public decimal Amount { get; set; }
+    public string user_name { get; set; }
 }

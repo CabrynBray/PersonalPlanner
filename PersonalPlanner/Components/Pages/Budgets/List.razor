@@ -5,6 +5,9 @@
 @inject MongoDBContext dbContext
 @inject PersonalPlanner.Data.MongoDBContext DB
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
 @using PersonalPlanner
 @rendermode InteractiveServer
 
@@ -55,10 +58,25 @@ else
     private string filter = "";
     private List<Budget> budgets = new List<Budget>();
     private List<Budget> Budgets => GetTasks();
+    private string currentUserName;
+    private string currentUserRole;
 
     protected override async Task OnInitializedAsync()
     {
-        budgets = await dbContext.Budgets.Find(_ => true).ToListAsync();
+
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        currentUserName = authState.User.Identity.Name;
+        currentUserRole = authState.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (currentUserRole == "Administrator")
+        {
+            budgets = await dbContext.Budgets.Find(_ => true).ToListAsync();
+        }
+        else if (!string.IsNullOrEmpty(currentUserName))
+        {
+            budgets = await dbContext.Budgets.Find(budge => budge.user_name == currentUserName).ToListAsync();
+        }
+        
         StateHasChanged();
     }
 
@@ -69,5 +87,4 @@ else
         : budgets.Where(budge => budge.Title.Contains(filter, StringComparison.OrdinalIgnoreCase)).ToList();
         return filteredBudget.ToList();
     }
-
 }

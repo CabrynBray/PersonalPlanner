@@ -3,6 +3,7 @@
 @using MongoDB.Driver.Linq
 @using PersonalPlanner
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 @using MongoDB.Driver
 @using PersonalPlanner.Data
@@ -64,6 +65,16 @@
 
     public async Task CreateBudget()
     {
+
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var userName = authState.User.Identity.Name;
+
+        if (string.IsNullOrEmpty(userName))
+        {
+            NavigationManager.NavigateTo("/Login");
+            return;
+        }
+
         var budgetCollection = dbContext.Budgets;
 
         // Get the maximum existing ID
@@ -75,6 +86,7 @@
 
         // Assign the new ID
         Budgets.Id = newId;
+        Budgets.user_name = userName;
 
         // Insert the new todo item
         await budgetCollection.InsertOneAsync(Budgets);

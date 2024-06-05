@@ -11,5 +11,6 @@ public class TodoTask
 
     [DataType(DataType.Date)]
     public DateTime? DueDate { get; set; }
+    public string user_name { get; set; }
 
 }

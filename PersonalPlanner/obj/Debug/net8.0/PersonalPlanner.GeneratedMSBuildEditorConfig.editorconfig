@@ -26,6 +26,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBY2NvdW50XEFjY2Vzc0RlbmllZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Jared/Documents/BYU/CSE 325/Group project repo/Team4GroupProject/PersonalPlanner/Components/Pages/Account/Account.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBY2NvdW50XEFjY291bnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jared/Documents/BYU/CSE 325/Group project repo/Team4GroupProject/PersonalPlanner/Components/Pages/Account/DeleteUser.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBY2NvdW50XERlbGV0ZVVzZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jared/Documents/BYU/CSE 325/Group project repo/Team4GroupProject/PersonalPlanner/Components/Pages/Account/EditAccount.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBY2NvdW50XEVkaXRBY2NvdW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Jared/Documents/BYU/CSE 325/Group project repo/Team4GroupProject/PersonalPlanner/Components/Pages/Account/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBY2NvdW50XExvZ2luLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

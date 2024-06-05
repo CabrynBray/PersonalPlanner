@@ -4,6 +4,7 @@
 @using PersonalPlanner
 @using PersonalPlanner.Models
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 @using MongoDB.Driver
 @using PersonalPlanner.Data
@@ -57,13 +58,29 @@
 
     public async Task AddGoal()
     {
+
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var userName = authState.User.Identity.Name;
+
+        if (string.IsNullOrEmpty(userName))
+        {
+            NavigationManager.NavigateTo("/Login");
+            return;
+        }
+
         var goalCollection = dbContext.Goal;
 
+
         // Get the maximum existing ID
-        int maxId = await goalCollection.AsQueryable().MaxAsync(g => (int?)g.Id) ?? 0;
+        var maxId = await goalCollection.AsQueryable()
+                                        .Select(g => (int?)g.Id)
+                                        .ToListAsync();
+
+        int newId = maxId.Any() ? maxId.Max().GetValueOrDefault() + 1 : 1;
 
         // Increment the ID to get the next available number
-        Goal.Id = maxId + 1;
+        Goal.Id = newId;
+        Goal.user_name = userName;
 
         await goalCollection.InsertOneAsync(Goal);
         NavigationManager.NavigateTo("/Goals");

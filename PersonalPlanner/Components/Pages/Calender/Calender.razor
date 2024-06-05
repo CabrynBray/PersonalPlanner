@@ -4,6 +4,9 @@
 @using PersonalPlanner.Models
 @using PersonalPlanner.Data
 @inject MongoDBContext dbContext
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
 @rendermode InteractiveServer
 
 <PageTitle>Calendar</PageTitle>
@@ -115,6 +118,8 @@
     private List<List<DateTime?>> weeks = new();
     private List<TodoTask> todoTasks = new();
     private List<Goal> goals = new();
+    private string currentUserName;
+    private string currentUserRole;
 
     protected override async Task OnInitializedAsync()
     {
@@ -124,8 +129,22 @@
 
     private async Task LoadData()
     {
-        todoTasks = await dbContext.Todo.Find(FilterDefinition<TodoTask>.Empty).ToListAsync();
-        goals = await dbContext.Goal.Find(FilterDefinition<Goal>.Empty).ToListAsync();
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        currentUserName = authState.User.Identity.Name;
+        currentUserRole = authState.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (currentUserRole == "Administrator")
+        {
+            todoTasks = await dbContext.Todo.Find(FilterDefinition<TodoTask>.Empty).ToListAsync();
+            goals = await dbContext.Goal.Find(FilterDefinition<Goal>.Empty).ToListAsync();
+        }
+        else if (!string.IsNullOrEmpty(currentUserName))
+        {
+            todoTasks = await dbContext.Todo.Find(todo => todo.user_name == currentUserName).ToListAsync();
+            goals = await dbContext.Goal.Find(g => g.user_name == currentUserName).ToListAsync();
+        }
+
+        StateHasChanged();    
     }
 
     private void GenerateCalendar()

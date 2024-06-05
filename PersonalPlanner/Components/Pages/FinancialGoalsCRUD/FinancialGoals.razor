@@ -5,6 +5,9 @@
 @inject MongoDBContext dbContext
 @using PersonalPlanner
 @using PersonalPlanner.Models
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
 @rendermode InteractiveServer
 
 <PageTitle>Goals</PageTitle>
@@ -57,10 +60,25 @@
     private const int itemsPerPage = 10;
     private List<Goal> allGoals = new List<Goal>();
     private List<Goal> PagedGoals => GetPagedGoals();
+    private string currentUserName;
+    private string currentUserRole;
 
     protected override async Task OnInitializedAsync()
     {
-        allGoals = await dbContext.Goal.Find(_ => true).ToListAsync();
+
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        currentUserName = authState.User.Identity.Name;
+        currentUserRole = authState.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (currentUserRole == "Administrator")
+        {
+            allGoals = await dbContext.Goal.Find(_ => true).ToListAsync();
+        }
+        else if (!string.IsNullOrEmpty(currentUserName))
+        {
+            allGoals = await dbContext.Goal.Find(g => g.user_name == currentUserName).ToListAsync();
+        }
+
         StateHasChanged();
     }
 

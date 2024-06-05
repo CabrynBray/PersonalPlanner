@@ -5,6 +5,9 @@
 @inject MongoDBContext dbContext
 @inject PersonalPlanner.Data.MongoDBContext DB
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
 @using PersonalPlanner
 @rendermode InteractiveServer
 
@@ -12,14 +15,9 @@
 
 <h1>To-Do List</h1>
 
-@* <input @bind="newTodoTask" />
-<button class="btn btn-primary" @onclick="AddTodoTask">Add Task</button> *@
-
 <p>
     <a href="Todos/CreateTodo">Create New</a>
 </p>
-
-
 
 <table class="table">
     <thead>
@@ -29,7 +27,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var todo in todoTasks)
+        @foreach (var todo in TodoTasks)
         {
             <tr>
                 <td>@todo.Todo</td>
@@ -47,10 +45,24 @@
     private string filter = "";
     private List<TodoTask> todoTasks = new List<TodoTask>();
     private List<TodoTask> TodoTasks => GetTasks();
+    private string currentUserName;
+    private string currentUserRole;
 
     protected override async Task OnInitializedAsync()
     {
-        todoTasks = await dbContext.Todo.Find(_ => true).ToListAsync();
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        currentUserName = authState.User.Identity.Name;
+        currentUserRole = authState.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (currentUserRole == "Administrator")
+        {
+            todoTasks = await dbContext.Todo.Find(_ => true).ToListAsync();
+        }
+        else if (!string.IsNullOrEmpty(currentUserName))
+        {
+            todoTasks = await dbContext.Todo.Find(todo => todo.user_name == currentUserName).ToListAsync();
+        }
+
         StateHasChanged();
     }
 
@@ -61,5 +73,4 @@
         : todoTasks.Where(todo => todo.Todo.Contains(filter, StringComparison.OrdinalIgnoreCase)).ToList();
         return filteredTodoTasks.ToList();
     }
-
 }

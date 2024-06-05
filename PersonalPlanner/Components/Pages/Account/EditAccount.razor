@@ -1,0 +1,110 @@
+@page "/Account/Edit"
+@using PersonalPlanner.Data
+@using PersonalPlanner.Models
+@using MongoDB.Driver
+@inject MongoDBContext dbContext
+@inject NavigationManager navigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@inject IJSRuntime js
+@rendermode InteractiveServer
+
+<PageTitle>Edit Account</PageTitle>
+
+<h1>Edit Account</h1>
+<div class="row">
+    <div class="col-md-4">
+<EditForm Model="user" OnValidSubmit="UpdateAccount">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">@errorMessage</div>
+    }
+
+    <div class="mb-3">
+        <dt class="col-sm-2">Username:</dt>
+        <dd class="col-sm-10">@user.user_name</dd>
+    </div>
+
+    <div class="mb-3">
+        <label for="oldPassword" class="form-label">Old Password:</label>
+        <InputText id="oldPassword" @bind-Value="oldPassword" type="password" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label for="newPassword" class="form-label">New Password:</label>
+        <InputText id="newPassword" @bind-Value="newPassword" type="password" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirm New Password:</label>
+        <InputText id="confirmPassword" @bind-Value="confirmPassword" type="password" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</EditForm>
+</div>
+</div>
+
+<div>
+    <a href="@($"/Account")">Back to Account</a>
+</div>
+
+@code {
+    private User user = new User();
+    private string oldPassword;
+    private string newPassword;
+    private string confirmPassword;
+    private string errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var currentUser = authState.User.Identity?.Name;
+
+        var userCollection = dbContext.Users;
+        user = await userCollection.Find(u => u.user_name == currentUser).FirstOrDefaultAsync();
+
+        if (user == null)
+        {
+            navigationManager.NavigateTo("/Login");
+        }
+    }
+
+    private async Task UpdateAccount()
+    {
+        errorMessage = string.Empty;
+
+        if (newPassword != confirmPassword)
+        {
+            errorMessage = "New password and confirm password do not match.";
+            return;
+        }
+
+        // Verify old password
+        if (!BCrypt.Net.BCrypt.Verify(oldPassword, user.password))
+        {
+            errorMessage = "Old password is incorrect.";
+            return;
+        }
+
+        user.password = HashPassword(newPassword);
+
+        var userCollection = dbContext.Users;
+        var filter = Builders<User>.Filter.Eq(u => u.Id, user.Id);
+        await userCollection.ReplaceOneAsync(filter, user);
+
+        var message = $" Password Updated Sucessfully";
+        await js.InvokeVoidAsync("alert", message);
+
+        navigationManager.NavigateTo("/Account");
+    }
+
+    private string HashPassword(string password)
+    {
+        return BCrypt.Net.BCrypt.HashPassword(password);
+    }
+}
